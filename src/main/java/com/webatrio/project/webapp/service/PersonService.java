@@ -1,5 +1,8 @@
 package com.webatrio.project.webapp.service;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
@@ -11,10 +14,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Objects;
+import java.util.Properties;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 import com.webatrio.project.webapp.dto.JobDTO;
@@ -34,6 +39,8 @@ public class PersonService {
 	@Autowired 
     private IJobRepository jobRepository;
 	
+	@Autowired
+    private Environment env;
 	
 	
     public Person getPersonById(Long id) {
@@ -50,9 +57,9 @@ public class PersonService {
     }
     
     private boolean isAgeValid(Date dateDeNaissance) {
+    	String yearsMax = env.getProperty("person.years.max");
         Calendar dateLimite = Calendar.getInstance();
-        dateLimite.add(Calendar.YEAR, -150);
-
+        dateLimite.add(Calendar.YEAR, -Integer.parseInt(yearsMax));
         return dateDeNaissance.after(dateLimite.getTime());
     }
 	
