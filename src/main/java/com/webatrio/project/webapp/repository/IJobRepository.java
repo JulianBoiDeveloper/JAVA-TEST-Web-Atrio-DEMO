@@ -12,4 +12,5 @@ public interface IJobRepository extends JpaRepository<Job, Long>{
 	 List<Job> findByPersonneAndDateDebutBetweenAndDateFinBetween(
 		        Person personne, Date dateDebut, Date dateFin, Date dateDebut1, Date dateFin1);
 	 List<Job> findByNomEntreprise(String nomEntreprise);
+	 List<Job> findByPersonneId(Long personneId);
 }

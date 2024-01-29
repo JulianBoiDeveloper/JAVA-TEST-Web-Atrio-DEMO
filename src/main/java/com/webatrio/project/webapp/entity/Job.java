@@ -2,9 +2,7 @@ package com.webatrio.project.webapp.entity;
 
 import java.util.Date;
 
-
-
-
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +25,7 @@ public class Job {
 
 	private Date dateDebut;
 
+	@Nullable	
 	private Date dateFin;
 
 
@@ -57,6 +56,18 @@ public class Job {
 
 	public void setPersonne(Person personne) {
 		this.personne = personne;
+	}
+
+	public Date getDateDebut() {
+		return dateDebut;
+	}
+
+	public Date getDateFin() {
+		return dateFin;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public void setDateDebut(Date dateDebut) {

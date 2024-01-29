@@ -34,11 +34,11 @@ public class JobService {
         job.setNomEntreprise(jobDTO.getNomEntreprise());
         job.setPoste(jobDTO.getPoste());
         job.setDateDebut(jobDTO.getDateDebut());
-        job.setDateFin(jobDTO.getDateFin());
-        
-        
-        	
-
+        if(jobDTO.getDateFin() == null) {
+        	job.setDateFin(null);
+        }else {
+          jobDTO.setDateFin(jobDTO.getDateFin());
+        }
         return jobRepository.save(job);
     }
     

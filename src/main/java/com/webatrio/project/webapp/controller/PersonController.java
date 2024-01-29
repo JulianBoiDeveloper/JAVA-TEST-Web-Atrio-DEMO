@@ -1,9 +1,11 @@
 package com.webatrio.project.webapp.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.webatrio.project.webapp.dto.PersonDTO;
 import com.webatrio.project.webapp.entity.Person;
 import com.webatrio.project.webapp.service.PersonService;
 
@@ -35,5 +38,10 @@ public class PersonController {
     public List<Person> getPeopleByCompany(@PathVariable String companyName) {
         List<Person> people = personService.getPeopleByCompanyName(companyName);
         return people;
+    }
+    
+    @GetMapping
+    public List<Object> getAllPersonsDetails() {
+        return personService.getAllPersonsDetails();
     }
 }
